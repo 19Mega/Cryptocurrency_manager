@@ -5,7 +5,6 @@ from crypto_function import api_update
 
 ################################################################################################
 
-
 def clear_console():
     os.system('cls')
 
@@ -181,7 +180,7 @@ while True:
             hora_actual = ahora.strftime("%H:%M:%S")
             print(f"N° de bucle: {contador_bucle} | HORA ACTUAL: {hora_actual} |")
             
-            # Sacamos los precios actuales de las cryptomonedas
+            # using crypto_function fitcher
             crypto_prices = api_update()
             
             actual_btc_price = crypto_prices [0]
@@ -193,7 +192,6 @@ while True:
                     data = json.load(f)
             except FileNotFoundError:
                 data = []
-
 
             btc_objects =[]
             eth_objects =[]
@@ -214,42 +212,39 @@ while True:
                 elif short_name == "MAT":
                     mat_objects.append(record)
 
-            
+
             for btc_purchase in btc_objects:
                 
                 float_crypto = float(btc_purchase['purchase_crypto'])
-                float_usd = {btc_purchase['purchase_usd']}
+                float_usd = float(btc_purchase['purchase_usd'])
                 actual_crypto_in_usd = float_crypto * actual_btc_price
-                y={btc_purchase['year']}
-                m={btc_purchase['month']}
-                d= {btc_purchase['day']}
+                profit = actual_crypto_in_usd - float_usd
+
+                print(f"\033[48;5;17m\033[38;5;51mCrypto: {btc_purchase['short_name']} | Date: {btc_purchase['year']}/{btc_purchase['month']}/{btc_purchase['day']} | Amount MAT: {float_crypto:.2f} | Buy Value: {float_usd:.2f} USD | Actual value: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
                 
-                print(f"Crypto: {btc_purchase['short_name']} | Date: {d}/{m}/{y} | Amount BTC: {float_crypto} >> Buy Value: {float_usd} USD | Actual value: {actual_crypto_in_usd} USD | Profit: {(actual_crypto_in_usd-float_usd)}")
 
             for eth_purchase in eth_objects:
                 
                 float_crypto = float(eth_purchase['purchase_crypto'])
-                float_usd = {eth_purchase['purchase_usd']}
-                actual_crypto_in_usd = float_crypto * actual_btc_price
-                y={eth_purchase['year']}
-                m={eth_purchase['month']}
-                d= {eth_purchase['day']}
+                float_usd = float(eth_purchase['purchase_usd'])
+                actual_crypto_in_usd = float_crypto * actual_eth_price
+                profit = actual_crypto_in_usd - float_usd
                 
-                print(f"Crypto: {eth_purchase['short_name']} | Date: {d}/{m}/{y} | Amount BTC: {float_crypto} >> Buy Value: {float_usd} USD | Actual value: {actual_crypto_in_usd} USD ")
-                
+                print(f"\033[48;5;17m\033[38;5;51mCrypto: {eth_purchase['short_name']} | Date: {eth_purchase['year']}/{eth_purchase['month']}/{eth_purchase['day']} | Amount MAT: {float_crypto:.2f} | Buy Value: {float_usd:.2f} USD | Actual value: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
+
 
             for mat_purchase in mat_objects:
 
                 float_crypto = float(mat_purchase['purchase_crypto'])
-                float_usd = {mat_purchase['purchase_usd']}
-                actual_crypto_in_usd = float_crypto * actual_btc_price
-                y={mat_purchase['year']}
-                m={mat_purchase['month']}
-                d= {mat_purchase['day']}
+                float_usd = float(mat_purchase['purchase_usd'])
+                actual_crypto_in_usd = float_crypto * actual_mat_price
+                profit = actual_crypto_in_usd - float_usd
                 
-                print(f"Crypto: {mat_purchase['short_name']} | Date: {d}/{m}/{y} | Amount BTC: {float_crypto} >> Buy Value: {float_usd} USD | Actual value: {actual_crypto_in_usd} USD ")
+                print(f"\033[48;5;17m\033[38;5;51mCrypto: {mat_purchase['short_name']} | Date: {mat_purchase['year']}/{mat_purchase['month']}/{mat_purchase['day']} | Amount MAT: {float_crypto:.2f} | Buy Value: {float_usd:.2f} USD | Actual value: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
 
 
+            print(" ")
+            
             contador_bucle += 1
             time.sleep(60)
 

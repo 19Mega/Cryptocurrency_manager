@@ -37,47 +37,17 @@ class Crypto():
         self.percent_change_24h = None
         self.percent_change_7d = None
 
-        # Current own values 
-        #self.current_usd_profit_value = self.price * self.purchase_in_crypto
-        #self.current_usd_profit_state = self.purchase_in_dollars - self.current_profit_value
-
         # Sale values
         self.sold_value = None
         self.sold_date = None
         self.is_sold = False
 
-    def update_prices(self):
-        response = requests.get(self.api_url)
-        data = response.json()
 
-        self.price = data['market_data']['current_price']['usd']
-        self.percent_change_1h = data['market_data']['price_change_percentage_1h_in_currency']['usd']
-        self.percent_change_24h = data['market_data']['price_change_percentage_24h_in_currency']['usd']
-        self.percent_change_7d = data['market_data']['price_change_percentage_7d_in_currency']['usd']
-
-    def show_prices(self):      
-        print(f"\033[1;33;100mPrecio actual {self.short_name} (USD): {self.price} \033[0m")
-
-        if self.percent_change_1h >= 0:
-            print("\033[32m % de cambio en 1 hora: +{:.2f}%\033[0m".format(self.percent_change_1h))
-        else:
-            print("\033[31m % de cambio en 1 hora: {:.2f}%\033[0m".format(self.percent_change_1h))
-        if self.percent_change_24h >= 0:
-            print("\033[32m % de cambio en 24 horas: +{:.2f}%\033[0m".format(self.percent_change_24h))
-        else:
-            print("\033[31m % de cambio en 24 horas: {:.2f}%\033[0m".format(self.percent_change_24h))
-        if self.percent_change_7d >= 0:
-            print("\033[32m % de cambio en 7 días: +{:.2f}%\033[0m".format(self.percent_change_7d))
-        else:
-            print("\033[31m % de cambio en 7 días: {:.2f}%\033[0m".format(self.percent_change_7d))
-
-
-    
     def current_profit_value(self):
         current_usd_profit_value = self.price * self.purchase_in_crypto
-        return '{:,.2f}'.format(current_usd_profit_value)
+        return current_usd_profit_value
     
     def current_profit_state(self):
         current_usd_profit_value = self.price * self.purchase_in_crypto
         current_usd_profit_state = current_usd_profit_value - self.purchase_in_dollars
-        return '{:,.2f}'.format(current_usd_profit_state)
+        return current_usd_profit_state

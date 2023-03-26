@@ -13,7 +13,7 @@ salir = False
 
 def detectar_tecla_escape(event):
     global salir
-    if event.name == 'esc':
+    if event.name == 'f1':
         print("\nSe ha presionado la tecla Escape. Saliendo...")
         salir = True
 
@@ -136,7 +136,7 @@ def view_all_sold_crypto_registers():
         print(f"Crypto: {record['short_name']}, USD spend: {record['purchase_usd']}, Crypto amount: {record['purchase_crypto']}, Date of purchase: {record['day']}/{record['month']}/{record['year']}, Sell value: {record.get('sell_value', '-')}, Profit: {record.get('profit', '-')}")
 
     total_profit = sum(record.get('profit', 0) for record in data)
-    print(f"Total profits: {total_profit} USD")
+    print(f"Total profits: {total_profit:.2f} USD")
 
 #################################################################################################
 
@@ -217,30 +217,31 @@ while True:
                 
                 float_crypto = float(btc_purchase['purchase_crypto'])
                 float_usd = float(btc_purchase['purchase_usd'])
+                crypto_purchase_value = float_usd / float_crypto 
                 actual_crypto_in_usd = float_crypto * actual_btc_price
                 profit = actual_crypto_in_usd - float_usd
-
-                print(f"\033[48;5;17m\033[38;5;51mCrypto: {btc_purchase['short_name']} | Date: {btc_purchase['year']}/{btc_purchase['month']}/{btc_purchase['day']} | Amount MAT: {float_crypto:.2f} | Buy Value: {float_usd:.2f} USD | Actual value: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
                 
+                print(f"\033[48;5;17m\033[38;5;51m {btc_purchase['short_name']} | {btc_purchase['year']}/{btc_purchase['month']}/{btc_purchase['day']} | Amount BTC: {float_crypto:.2f} > BTC= {crypto_purchase_value:.2f} $ | Buy Value: {float_usd:.2f} USD >> Actual: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
 
             for eth_purchase in eth_objects:
                 
                 float_crypto = float(eth_purchase['purchase_crypto'])
                 float_usd = float(eth_purchase['purchase_usd'])
+                crypto_purchase_value = float_usd / float_crypto 
                 actual_crypto_in_usd = float_crypto * actual_eth_price
                 profit = actual_crypto_in_usd - float_usd
                 
-                print(f"\033[48;5;17m\033[38;5;51mCrypto: {eth_purchase['short_name']} | Date: {eth_purchase['year']}/{eth_purchase['month']}/{eth_purchase['day']} | Amount MAT: {float_crypto:.2f} | Buy Value: {float_usd:.2f} USD | Actual value: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
-
+                print(f"\033[48;5;17m\033[38;5;51m {eth_purchase['short_name']} | {eth_purchase['year']}/{eth_purchase['month']}/{eth_purchase['day']} | Amount ETH: {float_crypto:.2f} > ETH= {crypto_purchase_value:.2f} $ | Buy Value: {float_usd:.2f} USD >> Actual: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
 
             for mat_purchase in mat_objects:
 
                 float_crypto = float(mat_purchase['purchase_crypto'])
                 float_usd = float(mat_purchase['purchase_usd'])
+                crypto_purchase_value = float_usd / float_crypto 
                 actual_crypto_in_usd = float_crypto * actual_mat_price
                 profit = actual_crypto_in_usd - float_usd
                 
-                print(f"\033[48;5;17m\033[38;5;51mCrypto: {mat_purchase['short_name']} | Date: {mat_purchase['year']}/{mat_purchase['month']}/{mat_purchase['day']} | Amount MAT: {float_crypto:.2f} | Buy Value: {float_usd:.2f} USD | Actual value: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
+                print(f"\033[48;5;17m\033[38;5;51m {mat_purchase['short_name']} | {mat_purchase['year']}/{mat_purchase['month']}/{mat_purchase['day']} | Amount MAT: {float_crypto:.2f} > MAT= {crypto_purchase_value:.2f} $ | Buy Value: {float_usd:.2f} USD >> Actual: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
 
 
             print(" ")

@@ -23,7 +23,7 @@ def api_update():
 
         print(f"\033[1;33;100m Precio actual {crypto_names[i]}: {price} USD\033[0m")
         
-        '''
+        
         if percent_change_1h >= 0:
             print("\033[32m % de cambio en 1 hora: +{:.2f}%\033[0m".format(percent_change_1h))
         else:
@@ -36,24 +36,10 @@ def api_update():
             print("\033[32m % de cambio en 7 días: +{:.2f}%\033[0m".format(percent_change_7d))
         else:
             print("\033[31m % de cambio en 7 días: {:.2f}%\033[0m".format(percent_change_7d))
-        '''
+        
         crypto_prices.append(float(price))
         
         
     return crypto_prices
-
-
-
-#contador_bucle = 0
-#while 1:
-#    ahora = datetime.now()
-#    hora_actual = ahora.strftime("%H:%M:%S")
-#    print(f"N° de bucle: {contador_bucle} | HORA ACTUAL: {hora_actual} |")
-
-#    contador_bucle += 1
-#    time.sleep(60)
-
-
-
 
 

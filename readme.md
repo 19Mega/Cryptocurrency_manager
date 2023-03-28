@@ -2,9 +2,7 @@ Cryptocurrency Manager
 
 
 This is a console program designed to keep track of your cryptocurrency purchases and profits. 
-It creates JSON files that act as mini databases to register all the movements.
 
-Other Information
 The program uses the CoinGecko API to retrieve the current value of the cryptocurrencies. 
 However, the purchase values are entered manually.
 

@@ -1,4 +1,6 @@
 Cryptocurrency Manager
+
+
 This is a console program designed to keep track of your cryptocurrency purchases and profits. 
 It creates JSON files that act as mini databases to register all the movements.
 

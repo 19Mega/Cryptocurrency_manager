@@ -3,23 +3,24 @@ from datetime import datetime
 import json, os, keyboard, signal, requests, time, winsound
 from crypto_function import api_update
 
-################################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # 
 
 def clear_console():
     os.system('cls')
 
-#################################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # 
+
 salir = False
 
-def detectar_tecla_escape(event):
+def main_menu_exit_key(event):
     global salir
-    if event.name == 'f1':
-        print("\nSe ha presionado la tecla Escape. Saliendo...")
+    if event.name == 'f4':
+        print("\nThe f4 key has been pressed. Exiting to the menu...")
         salir = True
 
-keyboard.on_press(detectar_tecla_escape)
+keyboard.on_press(main_menu_exit_key)
 
-#################################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # 
 
 def crypto_register(crypto):
     short_name = crypto
@@ -54,7 +55,7 @@ def crypto_register(crypto):
     with open('crypto_db.json', 'w') as f:
         json.dump(data, f, indent=2)
 
-#################################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # 
 
 def delete_crypto_register():
     try:
@@ -67,7 +68,7 @@ def delete_crypto_register():
     for record in data:
         print(f"ID: {record['id']}, Crypto: {record['short_name']}, USD spend: {record['purchase_usd']}, Crypto amount: {record['purchase_crypto']}, Date of purchase: {record['day']}/{record['month']}/{record['year']}")
 
-    id_to_delete = int(input("Ingrese el ID del registro que desea eliminar: "))
+    id_to_delete = int(input("Enter the ID of the record you want to delete: "))
 
     filtered_data = [record for record in data if record["id"] != id_to_delete]
 
@@ -76,7 +77,7 @@ def delete_crypto_register():
 
     print(f"ID: {id_to_delete} has been successfully deleted.")
 
-#################################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # 
 
 def crypto_sold_register():
     try:
@@ -93,7 +94,7 @@ def crypto_sold_register():
 
     for record in data:
         if record['id'] == sell_id:
-            sell_value = float(input("Ingrese el valor de venta en USD: "))
+            sell_value = float(input("Enter the sale value in USD: "))
             profit = sell_value - record['purchase_usd']
             record['sell_value'] = sell_value
             record['profit'] = profit
@@ -111,7 +112,7 @@ def crypto_sold_register():
 
             break
     else:
-        print(f"No se encontró un registro con ID {sell_id}")
+        print(f"No ID found: {sell_id}")
         return
 
     filtered_data = [record for record in data if record["id"] != sell_id]
@@ -119,10 +120,9 @@ def crypto_sold_register():
     with open('crypto_db.json', 'w') as f:
         json.dump(filtered_data, f, indent=2)
 
-    print(f"ID: {sell_id} has been removed from database.json and added to sales_made.json successfully.")
+    print(f"ID: {sell_id} has been removed from crypto_db.json and added to crypto_sales.json successfully.")
 
-
-#################################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # 
 
 def view_all_sold_crypto_registers():
     try:
@@ -138,7 +138,7 @@ def view_all_sold_crypto_registers():
     total_profit = sum(record.get('profit', 0) for record in data)
     print(f"Total profits: {total_profit:.2f} USD")
 
-#################################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # 
 
 def view_all_crypto_register():
     try:
@@ -151,10 +151,9 @@ def view_all_crypto_register():
     for record in data:
         print(f"Crypto: {record['short_name']}, USD spend: {record['purchase_usd']}, Crypto amount: {record['purchase_crypto']}, Date of purchase: {record['day']}/{record['month']}/{record['year']}")
 
-
-#################################################################################################
-#######################################        MENU        ######################################
-#################################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # MENU # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # 
 
 while True:
     print("")
@@ -180,7 +179,7 @@ while True:
             hora_actual = ahora.strftime("%H:%M:%S")
             print(f"N° de bucle: {contador_bucle} | HORA ACTUAL: {hora_actual} |")
             
-            # using crypto_function fitcher
+            # using crypto_function.py file
             crypto_prices = api_update()
             
             actual_btc_price = crypto_prices [0]

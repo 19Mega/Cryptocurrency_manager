@@ -86,7 +86,7 @@ def crypto_sold_register():
     except FileNotFoundError:
         data = []
 
-    print("Registros existentes:")
+    print("Existing records:")
     for record in data:
         print(f"ID: {record['id']}, Crypto: {record['short_name']}, USD spend: {record['purchase_usd']}, Crypto amount: {record['purchase_crypto']}, Date of purchase: {record['day']}/{record['month']}/{record['year']}")
 
@@ -133,11 +133,13 @@ def view_all_sold_crypto_registers():
     
     print("Existing records:")
     for record in data:
-        print(f"Crypto: {record['short_name']}, USD spend: {record['purchase_usd']}, Crypto amount: {record['purchase_crypto']}, Date of purchase: {record['day']}/{record['month']}/{record['year']}, Sell value: {record.get('sell_value', '-')}, Profit: {record.get('profit', '-')}")
+        print(f"\033[48;5;17m\033[38;5;51mCrypto: {record['short_name']}, USD spend: {record['purchase_usd']}, {record['short_name']} Amount: {record['purchase_crypto']}, Date of purchase: {record['day']}/{record['month']}/{record['year']}, Sell value: {record.get('sell_value', '-')} USD, Profit: {record.get('profit', '-')} USD\033[0m")
 
+    
+    print("--")
     total_profit = sum(record.get('profit', 0) for record in data)
-    print(f"Total profits: {total_profit:.2f} USD")
-
+    print(f"\033[48;5;17m\033[38;5;51mTotal profits: {total_profit:.2f} USD \033[0m")
+    
 # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 def view_all_crypto_register():
@@ -149,7 +151,7 @@ def view_all_crypto_register():
     
     print("Existing records:")
     for record in data:
-        print(f"Crypto: {record['short_name']}, USD spend: {record['purchase_usd']}, Crypto amount: {record['purchase_crypto']}, Date of purchase: {record['day']}/{record['month']}/{record['year']}")
+        print(f"\033[48;5;17m\033[38;5;51mCrypto: {record['short_name']}, USD spend: {record['purchase_usd']:.2f}, {record['short_name']} amount: {record['purchase_crypto']}, Date of purchase: {record['day']}/{record['month']}/{record['year']}\033[0m")
 
 # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # MENU # # # # # # # # # # # 
@@ -220,7 +222,7 @@ while True:
                 actual_crypto_in_usd = float_crypto * actual_btc_price
                 profit = actual_crypto_in_usd - float_usd
                 
-                print(f"\033[48;5;17m\033[38;5;51m {btc_purchase['short_name']} | {btc_purchase['year']}/{btc_purchase['month']}/{btc_purchase['day']} | Amount BTC: {float_crypto:.2f} > BTC= {crypto_purchase_value:.2f} $ | Buy Value: {float_usd:.2f} USD >> Actual: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
+                print(f"\033[48;5;17m\033[38;5;51m {btc_purchase['short_name']} | {btc_purchase['year']}/{btc_purchase['month']}/{btc_purchase['day']} | BTC Amount: {float_crypto:.2f} > BTC= {crypto_purchase_value:.2f} $ | Buy Value: {float_usd:.2f} USD >> Actual: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
 
             for eth_purchase in eth_objects:
                 
@@ -230,7 +232,7 @@ while True:
                 actual_crypto_in_usd = float_crypto * actual_eth_price
                 profit = actual_crypto_in_usd - float_usd
                 
-                print(f"\033[48;5;17m\033[38;5;51m {eth_purchase['short_name']} | {eth_purchase['year']}/{eth_purchase['month']}/{eth_purchase['day']} | Amount ETH: {float_crypto:.2f} > ETH= {crypto_purchase_value:.2f} $ | Buy Value: {float_usd:.2f} USD >> Actual: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
+                print(f"\033[48;5;17m\033[38;5;51m {eth_purchase['short_name']} | {eth_purchase['year']}/{eth_purchase['month']}/{eth_purchase['day']} | ETH Amount: {float_crypto:.2f} > ETH= {crypto_purchase_value:.2f} $ | Buy Value: {float_usd:.2f} USD >> Actual: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
 
             for mat_purchase in mat_objects:
 
@@ -240,14 +242,12 @@ while True:
                 actual_crypto_in_usd = float_crypto * actual_mat_price
                 profit = actual_crypto_in_usd - float_usd
                 
-                print(f"\033[48;5;17m\033[38;5;51m {mat_purchase['short_name']} | {mat_purchase['year']}/{mat_purchase['month']}/{mat_purchase['day']} | Amount MAT: {float_crypto:.2f} > MAT= {crypto_purchase_value:.2f} $ | Buy Value: {float_usd:.2f} USD >> Actual: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
-
+                print(f"\033[48;5;17m\033[38;5;51m {mat_purchase['short_name']} | {mat_purchase['year']}/{mat_purchase['month']}/{mat_purchase['day']} | MAT Amount: {float_crypto:.2f} > MAT= {crypto_purchase_value:.2f} $ | Buy Value: {float_usd:.2f} USD >> Actual: {actual_crypto_in_usd:.2f} USD | Profit: {profit:.2f} USD\033[0m")
 
             print(" ")
             
             contador_bucle += 1
             time.sleep(60)
-
 
     elif opcion == 2:
         print("What do you want to record?")

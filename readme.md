@@ -1,6 +1,7 @@
 Cryptocurrency Manager
 
-![Ejemplo de imagen](imgages/crypto_manager_image.png)
+![Ejemplo de imagen](blob/main/images/crypto_manager_image.png)
+
 
 This is a console program designed to keep track of your cryptocurrency purchases and profits. 
 

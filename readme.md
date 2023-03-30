@@ -1,6 +1,6 @@
-##########################################
+
 #          Cryptocurrency Manager         #
-##########################################
+
 
 ![Example Image](images/crypto_manager_image.png)
 

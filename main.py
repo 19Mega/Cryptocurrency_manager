@@ -57,7 +57,7 @@ def crypto_register(crypto):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-def delete_crypto_register():
+def crypto_delete_register():
     try:
         with open('crypto_db.json') as f:
             data = json.load(f)
@@ -267,7 +267,7 @@ while True:
     
     
     elif opcion ==3:
-        delete_crypto_register()
+        crypto_delete_register()
         
     elif opcion == 4:
         crypto_sold_register()

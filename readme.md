@@ -28,7 +28,7 @@ def crypto_register(crypto):
     and the purchase date (year, month, and day). The data is then appended to the crypto_db.json file."""
     
 
-def delete_crypto_register():
+def crypto_delete_register():
     """Displays all the current records in crypto_db.json and prompts the user to input the ID of the record they wish to delete. 
     The selected record is then removed from the JSON file."""
     

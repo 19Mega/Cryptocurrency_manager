@@ -10,15 +10,8 @@ def clear_console():
 
 # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-salir = False
-
-def main_menu_exit_key(event):
-    global salir
-    if event.name == 'f4':
-        print("\nThe f4 key has been pressed. Exiting to the menu...")
-        salir = True
-
-keyboard.on_press(main_menu_exit_key)
+# Option 1 While
+salir = False 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # 
 

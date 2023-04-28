@@ -6,6 +6,8 @@
 
 This is a console program designed to keep track of your cryptocurrency purchases and profits. The program uses the CoinGecko API to retrieve the current value of the cryptocurrencies. However, the purchase values are entered manually.
 
+Available Cryptocurrencies: BTC, ETH, MAT
+
 ## JSON Files
 The program creates two JSON files to store the data:
 - crypto_db.json: Stores all the cryptocurrency purchases.

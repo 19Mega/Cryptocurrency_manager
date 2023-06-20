@@ -1,2 +1,3 @@
 carpeta_a_ignorar/
 fichero_para_ignorar.py
+__pycache__/

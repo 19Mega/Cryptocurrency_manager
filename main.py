@@ -1,6 +1,6 @@
 from datetime import date 
 from datetime import datetime
-import json, os, keyboard, signal, requests, time, winsound
+import json, os, time
 from crypto_function import api_update
 
 # # # # # # # # # # # # # # # # # # # # # # # # # 
